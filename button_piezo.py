@@ -1,37 +1,16 @@
-import RPi.GPIO as GPIO
+from gpiozero import JamHat
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(20, GPIO.OUT)
+jh = JamHat()
 
-up = 18
-down = 19
-
-GPIO.setup(up, GPIO.IN)
-GPIO.setup(down, GPIO.IN)
-
-pwm = GPIO.PWM(20,10)
-
-def buzz(freq,length):
-        if not freq:
-                pwm.ChangeDutyCycle(0)
-        else:
-                pwm.ChangeFrequency(freq)
-                pwm.ChangeDutyCycle(50)
-        sleep(length)
-        pwm.ChangeDutyCycle(0)
-
-pwm.start(0)
-
-try:
+try: 
     while True:
-        if GPIO.input(up) or GPIO.input(down):
-            if GPIO.input(up):
-                while GPIO.input(up):
-                    buzz(1046.50,0.1)
-            if GPIO.input(down):
-                while GPIO.input(down):
-                    buzz(261.626,0.1)
-        sleep(0.1)
+        if(jh.button_1.is_pressed):
+                jh.buzzer.play(80)
+        elif(jh.button_2.is_pressed):
+                jh.buzzer.play(60)
+        else:
+                jh.off()
 except:
-    GPIO.cleanup()
+	jh.close()
+
