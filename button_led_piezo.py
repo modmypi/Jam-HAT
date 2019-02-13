@@ -22,7 +22,6 @@ try:
 
                 if(jh.button_1.is_pressed):
                         jh.buzzer.play(NOTES[note])
-                        sleep(0.1)
                 sleep(0.1)
 
 except KeyboardInterrupt:
