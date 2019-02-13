@@ -1,50 +1,29 @@
-import RPi.GPIO as GPIO
+from gpiozero import JamHat
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
-
-SELECT = 18
-PLAY = 19
-LEDS = (5,12,16,6,13,17)
-
-GPIO.setup(SELECT, GPIO.IN)
-GPIO.setup(PLAY, GPIO.IN)
-GPIO.setup(LEDS, GPIO.OUT, initial=0)
-GPIO.setup(20, GPIO.OUT)
-
-pwm = GPIO.PWM(20,1)
-pwm.ChangeDutyCycle(0)
+jh = JamHat()
 
 NOTES = [440.000, 391.995, 349.228, 329.628, 293.665, 261.626]
-
-def buzz(freq,length):
-        if not freq:
-                pwm.ChangeDutyCycle(0)
-        else:
-                pwm.ChangeFrequency(freq)
-                pwm.ChangeDutyCycle(50)
-        sleep(length)
-        pwm.ChangeDutyCycle(0)
-
-pwm.start(0)
-
+i = 0
+j = 0
 note = 0
-GPIO.output(LEDS[note], 1)
 
 try:
-    while True:
-        if GPIO.input(SELECT):
-            if note < 5:
-                note += 1
-            else:
-                note = 0
-            GPIO.output(LEDS, 0)
-            GPIO.output(LEDS[note], 1)
-            while GPIO.input(SELECT):
+        while True:
+                if(jh.button_2.is_pressed):
+                        note = (note + 1) % 6
+                        if(j == 2):
+                                i = (i + 1) % 2
+                        j = (j + 1) % 3
+                        sleep(0.1)
+                jh.off()
+                jh[i][j].on()
+
+
+                if(jh.button_1.is_pressed):
+                        jh.buzzer.play(NOTES[note])
+                        sleep(0.1)
                 sleep(0.1)
-        if GPIO.input(PLAY):
-            while GPIO.input(PLAY):
-                buzz(NOTES[note],0.2)
-            sleep(0.1)
-except:
-    GPIO.cleanup()
+
+except KeyboardInterrupt:
+        jh.close()
