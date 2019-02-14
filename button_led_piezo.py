@@ -9,20 +9,19 @@ j = 0
 note = 0
 
 try:
-        while True:
-                if(jh.button_2.is_pressed):
-                        note = (note + 1) % 6
-                        if(j == 2):
-                                i = (i + 1) % 2
-                        j = (j + 1) % 3
-                        sleep(0.1)
-                jh.off()
-                jh[i][j].on()
+    while True:
+        if(jh.button_2.is_pressed):
+            note = (note + 1) % 6
+            if(j == 2):
+                i = (i + 1) % 2
+            j = (j + 1) % 3
+            sleep(0.1)
+        jh.off()
+        jh[i][j].on()
 
-
-                if(jh.button_1.is_pressed):
-                        jh.buzzer.play(NOTES[note])
-                sleep(0.1)
+        if(jh.button_1.is_pressed):
+            jh.buzzer.play(NOTES[note])
+        sleep(0.1)
 
 except KeyboardInterrupt:
-        jh.close()
+    jh.close()

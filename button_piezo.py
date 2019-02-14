@@ -3,14 +3,13 @@ from time import sleep
 
 jh = JamHat()
 
-try: 
+try:
     while True:
         if(jh.button_1.is_pressed):
-                jh.buzzer.play(80)
+            jh.buzzer.play(80)
         elif(jh.button_2.is_pressed):
-                jh.buzzer.play(60)
+            jh.buzzer.play(60)
         else:
-                jh.off()
+            jh.off()
 except:
-	jh.close()
-
+    jh.close()
