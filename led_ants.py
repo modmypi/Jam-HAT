@@ -1,20 +1,18 @@
-from RPi import GPIO
+from gpiozero import JamHat
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
-
-LEDS = (5,12,16,6,13,17)
-
-GPIO.setup(LEDS, GPIO.OUT, initial=0)
+jh = JamHat()
+i = 0
+j = 0
 
 try:
-        prev = 0
-        led_length = len(LEDS)
-        while True:
-                for i in range(led_length):
-                        GPIO.output(LEDS[prev],0)
-                        GPIO.output(LEDS[i],1)
-                        prev = i
-                        sleep(.2)
+    while True:
+        if(j == 2):
+            i = (i + 1) % 2
+        j = (j + 1) % 3
+        sleep(0.2)
+        jh.off()
+        jh[i][j].on()
+        
 except:
-        GPIO.cleanup()
+    jh.close()
