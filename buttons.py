@@ -1,27 +1,19 @@
-from RPi import GPIO
+from gpiozero import JamHat
 from time import sleep
 
-GPIO.setmode(GPIO.BCM)
-
-up = 18
-down = 19
-
-GPIO.setup(up, GPIO.IN)
-GPIO.setup(down, GPIO.IN)
+jh = JamHat()
 
 try:
     counter = 0
     while True:
-        if GPIO.input(up) or GPIO.input(down):
-            if GPIO.input(up):
+        if jh.button_1.is_pressed or jh.button_2.is_pressed:
+            if jh.button_1.is_pressed:
                 counter += 1
-                while GPIO.input(up):
-                    sleep(0.1)
-            if GPIO.input(down):
+                jh.button_1.wait_for_release()
+            if jh.button_2.is_pressed:
                 counter -= 1
-                while GPIO.input(down):
-                    sleep(0.1)
-            print "Counter: %d" % counter
+                jh.button_2.wait_for_release()
+            print("Counter: %d" % counter)
         sleep(0.1)
 except:
-    GPIO.cleanup()
+    jh.close()
