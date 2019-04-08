@@ -28,7 +28,7 @@ jamhat = JamHat()
 For more usage please refer to the [Getting Started Guide](https://www.modmypi.com/blog/getting-started-with-the-jamhat) or the [GPIO Zero docs](https://gpiozero.readthedocs.io/en/stable/api_boards.html#jamhat).
 
 ## Pin Usage
-Also GPIO Zero is available for ease of setup, you may want to use something like RPI.GPIO or another GPIO library.
+For other projects you may want to use a library like RPi.GPIO in which case you will need to set up the pins by hand. The table below shows the pin numbers for BCM, Board and the matching GPIO Zero objects.
 
 | Component | GPIO.BCM | GPIO.BOARD | GPIO Zero object | Notes |
 |---|---|---|---|---|
