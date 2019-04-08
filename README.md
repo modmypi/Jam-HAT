@@ -46,8 +46,8 @@ For other projects you may want to use a library like RPi.GPIO in which case you
 | LED4 | GPIO 13 | Pin 33 | lights_2.yellow | |
 | LED5 | GPIO 16 | Pin 36 | lights_1.green | |
 | LED6 | GPIO 17 | Pin 11 | lights_2.green | |
-| Button 1 | GPIO 19 | Pin 35 | button_1 | Conntected to R8/R10 |
-| Button 2 | GPIO 18 | Pin 12 | button_2 | Conntected to R7/R9 |
+| Button 1 | GPIO 19 | Pin 35 | button_1 | Connected to R8/R10 |
+| Button 2 | GPIO 18 | Pin 12 | button_2 | Connected to R7/R9 |
 | Buzzer | GPIO 20 | Pin 38 | buzzer | |
 
 For example to set up the Red LED using RPi.GPIO:
