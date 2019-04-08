@@ -20,9 +20,17 @@ sudo apt-get install python3-gpiozero python-gpiozero
 From there you can add the Jam Hat into your Python script by using.
 
 ```
+# Import the JamHat from gpiozero along with sleep from time.
 from gpiozero import JamHat
+from time import sleep
 
+# Make the JamHat object.
 jamhat = JamHat()
+
+# Turn on the JamHat lights and buzzer, wait for 1 second and then turn it off.
+jamhat.on()
+sleep(1)
+jamhat.off()
 ```
 
 For more usage please refer to the [Getting Started Guide](https://www.modmypi.com/blog/getting-started-with-the-jamhat) or the [GPIO Zero docs](https://gpiozero.readthedocs.io/en/stable/api_boards.html#jamhat).
