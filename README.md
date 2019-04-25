@@ -84,3 +84,15 @@ Walk through the LEDs on the board.
 
 ### mario.py
 Play the Mario Theme tune via the Buzzer. This currently uses RPi.GPIO but will be transferred over into GPIO Zero soon.
+
+# Submitting Issues
+If you have an issue with the Jam Hat, please open an issue. When opening an issue please provide:
+
+Setup information including
+- Raspbian version
+- GPIO Zero version
+- How you have connected the Jam Hat (on the Raspberry Pi, controlling pins over daemon etc.)
+- A sample of the code you've used
+- The error being presented.
+
+Issues opened without this information will be closed off until this information can be provided.
